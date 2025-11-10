@@ -65,14 +65,14 @@ const RecipeCard = ({ recipe }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group cursor-pointer relative"
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:scale-105 group cursor-pointer relative max-[400px]:h-[280px] h-[350px]"
          data-aos="zoom-in" data-aos-duration="800">
       {/* Image with hover effect */}
       <div className="relative overflow-hidden">
         <img 
           src={recipe.strMealThumb} 
           alt={recipe.strMeal} 
-          className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-56 object-fill transition-transform duration-500 group-hover:scale-110 max-[400px]:h-46"
         />
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <span className="bg-white/90 px-2 py-1 rounded-full text-xs font-bold shadow-md">
@@ -81,8 +81,27 @@ const RecipeCard = ({ recipe }) => {
         </div>
       </div>
       
-      <div className="p-6 bg-gradient-to-br from-orange-50 to-yellow-50">
-        <h3 className="text-xl font-bold mb-2 text-gray-800 truncate">{recipe.strMeal}</h3>
+      <div className="p-6 bg-gradient-to-br from-orange-50 to-yellow-50 max-[400px]:p-2">
+        <div className='flex justify-between'>
+          <h3 className="text-xl font-bold mb-2 text-gray-800 truncate">{recipe.strMeal}</h3>
+          <div className='flex gap-1.5'>
+             <button
+                onClick={handleFavorite}
+              >
+                <span className={`text-2xl transition-all duration-300 ${isFavorited ? 'text-red-500 scale-110' : 'text-gray-400'}`}>
+                  {isFavorited ? '❤️' : '🤍'}
+                </span>
+              </button>
+              
+              <button
+                onClick={handleShare}
+                title="Share this recipe"
+                aria-label="Share"
+              >
+                <span className="text-xl">↗️</span>
+              </button>
+           </div>
+        </div>
         <div className='flex justify-between'>
           <div className=''>
           <p className="text-gray-600 mb-2 text-sm">🌍 {recipe.strArea} | {recipe.strCategory}</p>
@@ -90,32 +109,17 @@ const RecipeCard = ({ recipe }) => {
               ⏱️ {recipe.cookTime} min | 🔥 {recipe.nutrition.calories} cals
             </p>
             
-            {/* Video Link */}
+        </div>
+        {/* Actions */}
+        <div className="flex items-center justify-evenly flex-col">
+          {/* Video Link */}
             <Link 
               to={`/video/${recipe.idMeal}`} 
               className="text-orange-500 hover:text-orange-600 font-medium text-sm mb-3 inline-block transition-colors duration-300 underline-offset-2"
             >
               📺 Watch Video
             </Link>
-        </div>
-        {/* Actions */}
-        <div className="flex items-center justify-evenly flex-col">
-          <button
-            onClick={handleFavorite}
-            
-          >
-            <span className={`text-2xl transition-all duration-300 ${isFavorited ? 'text-red-500 scale-110' : 'text-gray-400'}`}>
-              {isFavorited ? '❤️' : '🤍'}
-            </span>
-          </button>
-          
-          <button
-            onClick={handleShare}
-            title="Share this recipe"
-            aria-label="Share"
-          >
-            <span className="text-xl">↗️</span>
-          </button>
+           
         </div>
         </div>
       </div>

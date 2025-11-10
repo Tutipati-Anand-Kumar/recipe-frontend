@@ -27,26 +27,26 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-xl sticky top-0 z-50">
-      <div className="max-w-8xl px-3 sm:px-4 lg:px-6 max-[400px]:h-[60px]">
+      <div className="max-w-8xl px-3 sm:px-4 lg:px-6 max-[400px]:h-[50px]">
         <div className="flex flex-nowrap items-center justify-between gap-3 h-auto py-2 max-[400px]:py-1 overflow-x-auto">
           
           {/* Logo */}
           <div className="shrink-0 flex items-center">
             <Link
               to="/"
-              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[14px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px]"
+              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[14px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px] max-[400px]:mb-3"
             >
               RecipeApp
             </Link>
           </div>
 
           {/* Search Bar - Center (always visible, scales dynamically) */}
-          <div className="flex-1 min-w-[180px] md:min-w-[300px] lg:min-w-[400px] max-[486px]:w-[155px] max-[486px]:text-[12px] max-w-xl w-full order-3 md:order-2 max-[486px]:h-[50px]">
+          <div className="flex-1 min-w-[180px] md:min-w-[300px] lg:min-w-[400px] max-[486px]:w-[155px] max-[486px]:text-[12px] max-w-xl w-full order-3 md:order-2 max-[486px]:h-[50px] max-[400px]:mt-1">
             <SearchBar />
           </div>
 
           {/* Mobile Hamburger */}
-          <div className="md:hidden flex items-center justify-center w-auto order-3">
+          <div className="md:hidden flex items-center justify-center w-auto order-3 max-[650px]:mb-4 max-[770px]:mb-2">
             <button
               onClick={toggleMobileMenu}
               className="p-2 text-gray-700 hover:text-orange-500 rounded-lg focus:outline-none max-[486px]:p-1 flex items-center justify-center"

@@ -85,12 +85,12 @@ const SearchBar = ({
           placeholder={placeholder}
           value={query}
           onChange={handleChange}
-          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none max-[400px]:p-2"
         />
         <button
           type="submit"
           disabled={searchLoading}
-          className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white px-6 py-3 rounded-lg"
+          className="bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white px-6 py-3 rounded-lg max-[400px]:px-2 max-[400px]:py-2"
         >
           {searchLoading ? 'Searching...' : 'Search'}
         </button>

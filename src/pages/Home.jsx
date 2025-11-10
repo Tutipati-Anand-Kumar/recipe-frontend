@@ -42,8 +42,8 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Featured Recipes</h1>
+      <div className="container mx-auto px-4 py-6 max-[400px]:py-4">
+        <h1 className="text-3xl font-bold mb-6 max-[400px]:text-[22px] max-[400px]:mb-3">Featured Recipes</h1>
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : currentRecipes.length === 0 ? (
