@@ -27,14 +27,14 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-xl sticky top-0 z-50">
-      <div className="max-w-8xl px-3 sm:px-4 lg:px-6 max-[400px]:h-[50px]">
-        <div className="flex flex-nowrap items-center justify-between gap-3 h-auto py-2 max-[400px]:py-1 overflow-x-auto">
+      <div className="max-w-8xl px-2 sm:px-4 lg:px-6 max-[400px]:h-[50px]">
+        <div className="flex flex-nowrap items-center justify-between gap-3 h-auto py-2 max-[400px]:py-1 overflow-x-auto max-[400px]:gap-1">
           
           {/* Logo */}
           <div className="shrink-0 flex items-center">
             <Link
               to="/"
-              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[14px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px] max-[400px]:mb-3"
+              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[14px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px] max-[400px]:mb-3 max-[400px]:14px"
             >
               RecipeApp
             </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center justify-center w-auto order-3 max-[650px]:mb-4 max-[770px]:mb-2">
             <button
               onClick={toggleMobileMenu}
-              className="p-2 text-gray-700 hover:text-orange-500 rounded-lg focus:outline-none max-[486px]:p-1 flex items-center justify-center"
+              className="p-2 text-gray-700 hover:text-orange-500 rounded-lg focus:outline-none max-[486px]:p-0 flex items-center justify-center"
             >
              <span className={`w-7 h-7 text-2xl transition-transform duration-300 flex items-center ${
                   isMobileMenuOpen ? 'rotate-360' : ''
@@ -175,7 +175,7 @@ const Navbar = () => {
         {/* Mobile Nav Links */}
           {isMobileMenuOpen && (
             <div
-              className="fixed top-16 right-1 md:hidden bg-white shadow-lg border border-gray-200 rounded-xl px-3 py-2 flex flex-col space-y-2 text-sm z-50 w-fit transition-all duration-300"
+              className="fixed top-16 right-1 md:hidden bg-white shadow-lg border border-gray-200 rounded-xl px-3 py-2 flex flex-col space-y-2 text-sm z-50 w-fit transition-all duration-300 max-[400px]:top-13"
               style={{ minWidth: "fit-content" }}
             >
               <NavLink
@@ -235,6 +235,19 @@ const Navbar = () => {
                     }
                   >
                     👤 Profile
+                  </NavLink>
+
+                  <NavLink
+                    to="/meal-planner"
+                    className={({ isActive }) =>
+                      `px-2 py-1 rounded-md font-medium ${
+                        isActive
+                          ? 'text-green-500 bg-green-100 shadow-md'
+                          : 'text-gray-700 hover:text-green-500 hover:shadow-md'
+                      }`
+                    }
+                  >
+                    📅 Planner
                   </NavLink>
 
                   <button

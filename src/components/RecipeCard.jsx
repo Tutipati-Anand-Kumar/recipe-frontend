@@ -69,11 +69,13 @@ const RecipeCard = ({ recipe }) => {
          data-aos="zoom-in" data-aos-duration="800">
       {/* Image with hover effect */}
       <div className="relative overflow-hidden">
-        <img 
+        <Link to={`/recipe/${recipe.idMeal}`}>
+          <img 
           src={recipe.strMealThumb} 
           alt={recipe.strMeal} 
           className="w-full h-56 object-fill transition-transform duration-500 group-hover:scale-110 max-[400px]:h-46"
         />
+        </Link>
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <span className="bg-white/90 px-2 py-1 rounded-full text-xs font-bold shadow-md">
             {recipe.strCategory}

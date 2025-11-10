@@ -79,13 +79,13 @@ const SearchBar = ({
 
   return (
     <div className="relative w-full max-w-xl mx-auto">
-      <form onSubmit={handleSubmit} className="flex items-center gap-3">
+      <form onSubmit={handleSubmit} className="flex items-center gap-3 max-[400px]:gap-1">
         <input
           type="text"
           placeholder={placeholder}
           value={query}
           onChange={handleChange}
-          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none max-[400px]:p-2"
+          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none max-[400px]:px-1 max-[400px]:py-2"
         />
         <button
           type="submit"
