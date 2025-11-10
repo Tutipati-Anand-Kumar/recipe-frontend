@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../redux/slices/recipeSlice';
 import { toast } from 'react-toastify';
 import { getProfile } from '../redux/slices/userSlice';
+import { FaShareAlt } from "react-icons/fa";
 
 const RecipeCard = ({ recipe }) => {
   const dispatch = useDispatch();
@@ -100,7 +101,7 @@ const RecipeCard = ({ recipe }) => {
                 title="Share this recipe"
                 aria-label="Share"
               >
-                <span className="text-xl">↗️</span>
+                <span className="text-xl text-blue-500 hover:text-blue-600"><FaShareAlt /></span>
               </button>
            </div>
         </div>

@@ -7,6 +7,7 @@ import { getProfile } from "../redux/slices/userSlice";
 import AOS from "aos";
 import Navbar from "../components/Navbar";
 import api from "../utils/api";
+import { FaShareAlt } from "react-icons/fa";
 
 const Recipe = () => {
   const { idMeal } = useParams();
@@ -145,7 +146,7 @@ const Recipe = () => {
                     title="Share"
                     className="text-2xl text-blue-500 hover:text-blue-600"
                   >
-                    ↗️
+                     <span className="text-xl"><FaShareAlt /></span>
                   </button>
                 </div>
               </div>
