@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import RecipeCard from '../components/RecipeCard';
@@ -7,13 +6,12 @@ import { searchRecipes } from '../redux/slices/recipeSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { recipes: rawResponse, loading } = useSelector((state) => state.recipe);
+  const { recipes, loading, totalPages } = useSelector((state) => state.recipe);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
   // Handle search
-  const handleSearch = (query, type = 'name') => {
+  const handleSearch = (query = '', type = 'name') => {
     setSearchQuery(query);
     setCurrentPage(1);
     dispatch(searchRecipes({ query, type, page: 1, limit: 20 }));
@@ -24,12 +22,6 @@ const Home = () => {
     handleSearch('');
   }, [dispatch]);
 
-  useEffect(() => {
-    if (rawResponse && typeof rawResponse === 'object') {
-      setTotalPages(rawResponse.totalPages || 1);
-    }
-  }, [rawResponse]);
-
   const handlePageChange = (page) => {
     if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
@@ -37,13 +29,14 @@ const Home = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const currentRecipes = rawResponse?.recipes || [];
+  const currentRecipes = recipes || [];
 
   return (
     <div>
       <Navbar />
       <div className="container mx-auto px-4 py-6 max-[400px]:py-4">
         <h1 className="text-3xl font-bold mb-6 max-[400px]:text-[22px] max-[400px]:mb-3">Featured Recipes</h1>
+
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : currentRecipes.length === 0 ? (
@@ -55,6 +48,7 @@ const Home = () => {
             ))}
           </div>
         )}
+
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center space-x-4 mt-8">
@@ -65,7 +59,9 @@ const Home = () => {
             >
               Previous
             </button>
-            <span className="text-lg font-semibold">Page {currentPage} of {totalPages}</span>
+            <span className="text-lg font-semibold">
+              Page {currentPage} of {totalPages}
+            </span>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}

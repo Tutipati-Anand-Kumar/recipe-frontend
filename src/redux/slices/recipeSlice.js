@@ -3,15 +3,18 @@ import api from '../../utils/api';
 
 export const searchRecipes = createAsyncThunk(
   'recipe/search',
-  async ({ query, type = 'name' }, { rejectWithValue }) => {
+  async ({ query = '', type = 'name', page = 1, limit = 20 }, { rejectWithValue }) => {
     try {
-      const response = await api.get('/recipes/search', { params: { query, type } });
+      const response = await api.get('/recipes/search', {
+        params: { query, type, page, limit },
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data.error);
+      return rejectWithValue(error.response?.data?.error || error.message);
     }
   }
 );
+
 
 export const getRecipe = createAsyncThunk(
   'recipe/get',
@@ -57,6 +60,8 @@ const initialState = {
   error: null,
 };
 
+console.log(initialState.recipes) // [] (emty array is getting allways why?)
+
 const recipeSlice = createSlice({
   name: 'recipe',
   initialState,
@@ -66,10 +71,14 @@ const recipeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(searchRecipes.pending, (state) => { state.loading = true; state.error = null; })
-      .addCase(searchRecipes.fulfilled, (state, action) => {
-        state.loading = false;
-        state.recipes = action.payload;
-      })
+     .addCase(searchRecipes.fulfilled, (state, action) => {
+      state.loading = false;
+      state.recipes = action.payload.recipes || [];
+      state.total = action.payload.total || 0;
+      state.page = action.payload.page || 1;
+      state.totalPages = action.payload.totalPages || 1;
+    })
+
       .addCase(searchRecipes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
