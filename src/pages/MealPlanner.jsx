@@ -13,7 +13,7 @@ const MealPlanner = () => {
   const [selectedPlanId, setSelectedPlanId] = useState('');
 
   useEffect(() => {
-    console.log('🍽️ Meals after update:', meals);
+    console.log('Meals after update:', meals);
   }, [meals]);
 
   const addMeal = () => {
@@ -24,7 +24,7 @@ const MealPlanner = () => {
     setMeals((prevMeals) => {
       const updated = [...prevMeals];
       updated[index] = { ...updated[index], [field]: value };
-      console.log('✅ Meal updated:', updated);
+      console.log('Meal updated:', updated);
       return updated;
     });
   };
@@ -43,45 +43,45 @@ const MealPlanner = () => {
 
   const handleCreate = async () => {
     if (meals.some((meal) => !meal.recipe)) {
-      toast.warning('⚠️ Please select all recipes');
+      toast.warning('Please select all recipes');
       return;
     }
     try {
       const plan = await dispatch(createMealPlan({ week, meals })).unwrap();
       setSelectedPlanId(plan._id);
-      toast.success('✅ Plan created successfully!');
+      toast.success('Plan created successfully!');
     } catch {
-      toast.error('❌ Failed to create plan.');
+      toast.error('Failed to create plan.');
     }
   };
 
   const handleGenerateGrocery = async () => {
-    if (!selectedPlanId) return toast.warning('🛒 Create a plan first');
+    if (!selectedPlanId) return toast.warning('Create a plan first');
     try {
       await dispatch(generateGroceryList(selectedPlanId)).unwrap();
-      toast.success('🛍️ Grocery list generated!');
+      toast.success('Grocery list generated!');
     } catch {
-      toast.error('❌ Error generating grocery list');
+      toast.error('Error generating grocery list');
     }
   };
 
   const handleShare = async () => {
-    if (!selectedPlanId) return toast.warning('🔗 Create a plan first');
+    if (!selectedPlanId) return toast.warning('Create a plan first');
     try {
       const data = await dispatch(shareMealPlan(selectedPlanId)).unwrap();
-      toast.info(`📤 Share Link: ${data.shareUrl}`);
+      toast.info(`Share Link: ${data.shareUrl}`);
     } catch {
-      toast.error('❌ Failed to share plan');
+      toast.error('Failed to share plan');
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-yellow-50 text-gray-800">
       <Navbar />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-8 sm:py-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-10">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-orange-500 to-pink-600 bg-clip-text text-transparent drop-shadow-md">
+          <h1 className="text-3xl sm:text-3xl max-[500px]:text-xl font-bold bg-gradient-to-r from-orange-500 to-pink-600 bg-clip-text text-transparent drop-shadow-md">
             🍽️ Meal Planner
           </h1>
           <p className="text-gray-600 mt-2 text-xs sm:text-sm md:text-base">

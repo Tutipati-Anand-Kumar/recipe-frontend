@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="shrink-0 flex items-center">
             <Link
               to="/"
-              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[14px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px] max-[400px]:mb-3 max-[400px]:14px"
+              className="text-xl sm:text-xl max-[486px]:text-[16px] max-[360px]:text-[13px] font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap max-[860px]:text-[16px] max-[400px]:mb-3 max-[400px]:14px"
             >
               RecipeApp
             </Link>

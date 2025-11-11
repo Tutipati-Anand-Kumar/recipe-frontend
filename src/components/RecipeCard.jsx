@@ -27,16 +27,13 @@ const RecipeCard = ({ recipe }) => {
   }
 
   try {
-    // Optimistic update before waiting for server
     setIsFavorited((prev) => !prev);
 
     const response = await dispatch(toggleFavorite(recipe.idMeal)).unwrap();
     toast.success(response.message);
 
-    // Re-sync from backend to make sure Redux store stays in sync
     dispatch(getProfile());
   } catch (err) {
-    // Rollback if failed
     setIsFavorited((prev) => !prev);
     toast.error(err || 'Failed to update favorite');
   }
@@ -91,7 +88,7 @@ const RecipeCard = ({ recipe }) => {
              <button
                 onClick={handleFavorite}
               >
-                <span className={`text-2xl transition-all duration-300 ${isFavorited ? 'text-red-500 scale-110' : 'text-gray-400'}`}>
+                <span className={`text-xl transition-all duration-300 ${isFavorited ? 'text-red-500 scale-110' : 'text-gray-400'}`}>
                   {isFavorited ? '❤️' : '🤍'}
                 </span>
               </button>

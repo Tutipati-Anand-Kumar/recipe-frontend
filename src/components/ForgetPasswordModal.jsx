@@ -19,7 +19,7 @@ const ForgetPasswordModal = ({ onClose }) => {
     try {
       await api.post("/auth/forget-password", { email });
       setStep(2);
-      toast.success("✅ Email verified! Proceed to reset your password.");
+      toast.success("Email verified! Proceed to reset your password.");
     } catch (err) {
       const errorMsg =
         err.response?.data?.error || err.message || "Verification failed";
@@ -38,7 +38,7 @@ const ForgetPasswordModal = ({ onClose }) => {
     setLoading(true);
     try {
       await api.post("/auth/reset-password", { email, newPassword });
-      toast.success("🎉 Password reset successful! You can now log in.");
+      toast.success("Password reset successful! You can now log in.");
       onClose();
     } catch (err) {
       const errorMsg =

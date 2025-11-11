@@ -27,15 +27,15 @@ const Login = () => {
     dispatch(clearError());
     try {
       await dispatch(loginUser({ email, password })).unwrap();
-      toast.success("🎉 Login successful!");
+      toast.success("Login successful!");
       navigate("/");
     } catch (err) {
       if (error?.toLowerCase().includes("password")) {
-        toast.error("❌ Invalid password. Please try again.");
+        toast.error("Invalid password. Please try again.");
       } else if (error?.toLowerCase().includes("email")) {
-        toast.error("⚠️ Invalid email address.");
+        toast.error("Invalid email address.");
       } else {
-        toast.error("🚫 Invalid credentials. Please check your details.");
+        toast.error("Invalid credentials. Please check your details.");
       }
     }
   };

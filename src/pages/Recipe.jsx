@@ -98,7 +98,7 @@ const Recipe = () => {
       <Navbar />
 
       {/* Main Container */}
-      <div className="max-w-8xl mx-auto px-4 py-6 md:py-5">
+      <div className="max-w-8xl mx-auto px-4 py-4 md:py-5">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
@@ -127,14 +127,14 @@ const Recipe = () => {
           <div className="flex flex-col justify-between text-gray-700 space-y-3">
             <div>
               <div className="flex justify-between items-start mb-3">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800">
                   {recipe.strMeal}
                 </h2>
 
                 <div className="flex gap-3 items-center">
                   <button onClick={handleFavorite}>
                     <span
-                      className={`text-2xl transition-all duration-300 ${
+                      className={`text-xl transition-all duration-300 ${
                         isFavorited ? "text-red-500" : "text-gray-400"
                       }`}
                     >

@@ -20,9 +20,9 @@ const Profile = () => {
   const handleUpdate = async () => {
     try {
       await dispatch(updateIngredients(ingredients)).unwrap();
-      toast.success('✅ Ingredients updated successfully!');
+      toast.success('Ingredients updated successfully!');
     } catch (err) {
-      toast.error('❌ Failed to update ingredients.');
+      toast.error('Failed to update ingredients.');
     }
   };
 
@@ -37,13 +37,13 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-yellow-50 text-gray-800">
       <Navbar />
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-orange-500 to-pink-600 bg-clip-text text-transparent drop-shadow-md">
+          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-orange-500 to-pink-600 bg-clip-text text-transparent drop-shadow-md max-[500px]:text-xl">
             👤 Your Profile
           </h1>
-          <p className="text-gray-600 mt-2 text-sm sm:text-base">
+          <p className="text-gray-600 mt-2 text-sm sm:text-base max-[500px]:text-[12px]">
             Manage your account details and ingredients here 🍳
           </p>
         </div>
@@ -80,9 +80,8 @@ const Profile = () => {
                     e.target.value = '';
                   }
                 }}
-                className="w-full px-4 py-2 rounded-lg border-2 border-orange-300 focus:border-pink-500 outline-none transition-all duration-300 text-sm sm:text-base shadow-sm focus:shadow-md"
+                className="w-full px-4 py-2 rounded-lg border-2 border-orange-300 focus:border-pink-500 outline-none transition-all duration-300 text-sm sm:text-base shadow-sm focus:shadow-md max-[500px]:text-[10px] max-[500px]:px-2"
               />
-              <div className="absolute right-3 top-2.5 text-orange-400 text-xl">🍽️</div>
             </div>
 
             {/* Ingredient List */}
@@ -108,7 +107,7 @@ const Profile = () => {
             {/* Update Button */}
             <button
               onClick={handleUpdate}
-              className="mt-6 w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-pink-300"
+              className="mt-4 w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 focus:ring-4 focus:ring-pink-300 max-[500px]:text-[14px] max-[500px]:px-2"
             >
               💾 Update Ingredients
             </button>

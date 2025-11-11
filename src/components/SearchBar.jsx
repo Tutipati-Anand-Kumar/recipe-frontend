@@ -1,23 +1,38 @@
-// SearchBar.jsx (Fixed version with onSelect)
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchRecipes } from '../redux/slices/recipeSlice';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = ({
   onResults,
-  onSelect, // ✅ new prop
+  onSelect, 
   type = 'name',
   noNavigate = false,
-  placeholder = "Search recipes by ingredient or name...",
 }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [typingTimeout, setTypingTimeout] = useState(null);
   const [suggestionLoading, setSuggestionLoading] = useState(false);
+  const [placeholderText, setPlaceholderText] = useState("Search recipes by ingredient or name...");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading: searchLoading } = useSelector((state) => state.recipe);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 500) {
+        setPlaceholderText("Search recipes...");
+      } else {
+        setPlaceholderText("Search recipes by ingredient or name...");
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchSuggestions = useCallback(
     async (q) => {
@@ -58,7 +73,7 @@ const SearchBar = ({
       try {
         const result = await dispatch(searchRecipes({ query, type })).unwrap();
         const data = result?.recipes?.recipes || result?.recipes || result || [];
-        if (onResults) onResults(data); // ✅ simplified
+        if (onResults) onResults(data);
         if (!noNavigate) navigate('/');
       } catch (err) {
         console.error('Error searching:', err);
@@ -72,7 +87,7 @@ const SearchBar = ({
     (meal) => {
       setQuery(meal.strMeal);
       setSuggestions([]);
-      if (onSelect) onSelect(meal); // ✅ directly notify parent
+      if (onSelect) onSelect(meal); 
     },
     [onSelect]
   );
@@ -82,10 +97,10 @@ const SearchBar = ({
       <form onSubmit={handleSubmit} className="flex items-center gap-3 max-[400px]:gap-1">
         <input
           type="text"
-          placeholder={placeholder}
+          placeholder={placeholderText} 
           value={query}
           onChange={handleChange}
-          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none max-[400px]:px-1 max-[400px]:py-2"
+          className="p-3 w-full rounded-lg text-black border border-gray-300 focus:ring-2 focus:ring-orange-400 focus:outline-none max-[500px]:px-1 max-[500px]:py-2"
         />
         <button
           type="submit"
@@ -96,7 +111,6 @@ const SearchBar = ({
         </button>
       </form>
 
-      {/* Suggestions dropdown */}
       {suggestionLoading && (
         <div className="absolute left-0 w-full bg-white rounded-lg shadow-lg mt-2 z-50 text-gray-600 text-center p-3">
           ⏳ Loading suggestions...
@@ -108,7 +122,7 @@ const SearchBar = ({
             <div
               key={meal.idMeal}
               className="p-3 hover:bg-orange-100 cursor-pointer flex items-center gap-3"
-              onClick={() => handleSelectSuggestion(meal)} // ✅ direct click
+              onClick={() => handleSelectSuggestion(meal)} 
             >
               <img
                 src={meal.strMealThumb}

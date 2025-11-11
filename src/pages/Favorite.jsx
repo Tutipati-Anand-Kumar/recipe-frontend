@@ -19,8 +19,8 @@ const Favorite = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center text-pink-600 drop-shadow-md">Your Favorites ❤️</h1>
+      <div className="container mx-auto px-4 py-4">
+        <h1 className="text-3xl font-bold mb-6 text-center text-pink-600 drop-shadow-md max-[500px]:text-xl max-[500px]:mb-4">Your Favorites ❤️</h1>
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto"></div>
